@@ -3,25 +3,78 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #0A0A1A;
+  --surface: #0F1630;
+  --card: #161D3A;
+  --border-gold: #FFD700;
+  --primary: #4FC3F7;
+  --secondary: #CE93D8;
+  --accent: #FFC107;
+  --success: #66BB6A;
+  --error: #EF5350;
+  --text: #F0F0FF;
+  --text-muted: #8892B0;
+  --background: #0A0A1A;
+  --foreground: #F0F0FF;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.orbitron {
+  font-family: 'Orbitron', monospace;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--card);
+  border-radius: 3px;
+}
+
+/* Gold glow animation */
+@keyframes goldPulse {
+  0%, 100% { box-shadow: 0 0 8px #FFD700, 0 0 16px #FFD70044; }
+  50% { box-shadow: 0 0 16px #FFD700, 0 0 32px #FFD70088; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-gold-pulse {
+  animation: goldPulse 1.5s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Timer ring */
+@keyframes countdownRing {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: 283; }
 }
